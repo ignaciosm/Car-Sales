@@ -17,7 +17,7 @@ export const CarFeatureReducer = (state = initialState, action) => {
       return {
         ...state,
         car: {
-          ...state.car, price: state.car.price + action.payload
+          ...state.car, price: state.car.price + action.payload.price
         }
       }
     case 'REMOVE_FEATURE':
@@ -28,7 +28,14 @@ export const CarFeatureReducer = (state = initialState, action) => {
             ...state.car, features: state.car.features.filter(item => item.id !== action.payload.id )
           }
         };      
-
+    case 'REMOVE_PRICE':
+        // console.log('hello from reducer', action)
+        return {
+          ...state,
+          car: {
+            ...state.car, price: state.car.price - action.payload.price
+          }
+        }
       // return state;
       // return { todos: state.todos.filter(todo => !todo.completed) };        
     default:
